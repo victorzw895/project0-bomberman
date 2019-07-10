@@ -1,12 +1,10 @@
 console.log('bomberman is running!');
 
-const pressedKeys = {};
-let moving = false;
-
 $(document).ready(function() {
 
 })
-
+  const pressedKeys = {};
+  let moving = false;
 
   $(document).keydown(function(e) {
     // event.preventDefault();
@@ -23,19 +21,19 @@ $(document).ready(function() {
 
   const directionSpeed = {
     37: {
-      left: "-=26"
+      left: "-=1"
     },
 
     38: {
-      top: "-=26"
+      top: "-=1"
     },
 
     39: {
-      left: "+=26"
+      left: "+=1"
     },
 
     40: {
-      top: "+=26"
+      top: "+=1"
     },
 
     32: {
@@ -100,10 +98,10 @@ $(document).ready(function() {
           // else {
           //   console.log('working appropiately');
           // }
-          if (bX < 167 + 52 || bY < 48 + 52 || bX + 50 > 323 || bY + 50 > 204
-          || (bX + 50 > 270 && bY + 50 > 152)) {
+          if (bX < 167 + 52 || bY < 48 + 52 || bX + 20 > 323 || bY + 25 > 204
+          || (bX + 20 > 270 && bY + 25 > 152)) {
             if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
-              clearInterval(intervalId);
+              clearInterval(intervalId)
             }
             console.log('working');
           }
@@ -114,7 +112,7 @@ $(document).ready(function() {
         // console.log(e.which)
         if (!moving && pressedKeys[e.which] === true) {
           // if (pressedKeys[e.which] === true && e.which === 39) {
-            intervalId = setInterval(move, 100);
+            intervalId = setInterval(move, 1);
         }
       // }
 

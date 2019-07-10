@@ -142,9 +142,9 @@ $(document).ready(function () {
     obstacles['obstacle'+i] = obstacle.position();
   }
 
-  if (moving === true) {
-    $('#bomberman').addClass('moving')
-  }
+  // if (moving === true) {
+  //   $('#bomberman').addClass('moving')
+  // }
 
 
   // let $bombermanX = $('#bomberman').position().top;

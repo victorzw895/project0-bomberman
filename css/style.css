@@ -8,6 +8,17 @@ body {
 
 #bomberman {
   position: absolute;
+  width: 20px;
+  height: 25px;
+  background-color: red;
+  left: 235px;
+  top: 110px;
+}
+
+/* FOR full version, still on testing
+
+#bomberman {
+  position: absolute;
   width: 48px;
   height: 48px;
   background-image: url(../images/spritestand.gif);
@@ -22,7 +33,7 @@ body {
   height: 50px;
   background-image: url(../images/spritewalk.gif);
   background-size: contain;
-}
+} */
 
 .box {
   background-color: rgba(114, 144, 96, 0.73);
