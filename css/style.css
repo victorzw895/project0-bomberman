@@ -1,0 +1,155 @@
+/* // TicTacToe ///////////////////////////////////////////////////////////// */
+
+table {
+  background-color: rgba(138, 132, 166, 0.4);
+  display: inline-block;
+}
+
+.top {
+  border-top: 1px solid white;
+}
+
+.bottom {
+  border-bottom: 1px solid white;
+}
+
+td:first-child {
+  border-left: 1px solid white;
+}
+
+td:last-child {
+  border-right: 1px solid white;
+}
+
+td {
+  border: 1px solid black;
+  padding: 0.5px;
+}
+
+td, a {
+  width: 60px;
+  height: 60px;
+}
+
+a {
+  display: block;
+}
+
+.ace-blue {
+  background-image: url(../images/ace-blue.png);
+  background-size: contain;
+}
+
+.ace-red {
+  background-image: url(../images/ace-red.png);
+  background-size: contain;
+}
+.orbit-blue {
+  background-image: url(../images/orbit-blue.png);
+  background-size: contain;
+}
+
+.orbit-red {
+  background-image: url(../images/orbit-red.png);
+  background-size: contain;
+}
+.wolf-head-blue {
+  background-image: url(../images/wolf-head-blue.png);
+  background-size: contain;
+}
+
+.wolf-head-red {
+  background-image: url(../images/wolf-head-red.png);
+  background-size: contain;
+}
+
+.gameOver {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.iconSelector {
+  display: inline-block;
+}
+
+img {
+  width: 60px;
+  height: 60px;
+}
+
+button {
+  visibility: hidden;
+}
+
+
+/* // Dodger //////////////////////////////////////////////////////////////// */
+
+/* .dodger {
+  height: 20px;
+  width: 15px;
+  background-color: rgb(223, 84, 148);
+  position: absolute;
+  bottom: 100px;
+  left: 500px;
+} */
+
+/* // Bomberman ///////////////////////////////////////////////////////////// */
+
+body {
+  width: 960px;
+  margin: 40px auto;
+  background-color: rgba(31, 40, 161, 0.44);
+}
+
+#bomberman {
+  position: absolute;
+  width: 20px;
+  height: 25px;
+  background-color: red;
+  left: 213px;
+  top: 90px;
+}
+
+.box {
+  background-color: rgba(114, 144, 96, 0.73);
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.box:nth-child(even) {
+  /* background-color: #ccc;
+  color: #000; */
+}
+
+.wrapper {
+  border: 0.5em inset grey;
+  width: 946px;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: 30px repeat(17, 50px) 30px;
+  grid-template-rows: 30px repeat(9, 50px) 30px;
+  grid-auto-flow: column;
+}
+
+.border {
+  background-color: black;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.walls {
+  background-color: rgb(20, 20, 20);
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.brick {
+  background-image: url(../images/brick.jpg);
+  background-size: contain;
+  /* background-color: #444; */
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
