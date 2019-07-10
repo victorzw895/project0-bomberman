@@ -1,97 +1,3 @@
-/* // TicTacToe ///////////////////////////////////////////////////////////// */
-
-table {
-  background-color: rgba(138, 132, 166, 0.4);
-  display: inline-block;
-}
-
-.top {
-  border-top: 1px solid white;
-}
-
-.bottom {
-  border-bottom: 1px solid white;
-}
-
-td:first-child {
-  border-left: 1px solid white;
-}
-
-td:last-child {
-  border-right: 1px solid white;
-}
-
-td {
-  border: 1px solid black;
-  padding: 0.5px;
-}
-
-td, a {
-  width: 60px;
-  height: 60px;
-}
-
-a {
-  display: block;
-}
-
-.ace-blue {
-  background-image: url(../images/ace-blue.png);
-  background-size: contain;
-}
-
-.ace-red {
-  background-image: url(../images/ace-red.png);
-  background-size: contain;
-}
-.orbit-blue {
-  background-image: url(../images/orbit-blue.png);
-  background-size: contain;
-}
-
-.orbit-red {
-  background-image: url(../images/orbit-red.png);
-  background-size: contain;
-}
-.wolf-head-blue {
-  background-image: url(../images/wolf-head-blue.png);
-  background-size: contain;
-}
-
-.wolf-head-red {
-  background-image: url(../images/wolf-head-red.png);
-  background-size: contain;
-}
-
-.gameOver {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.iconSelector {
-  display: inline-block;
-}
-
-img {
-  width: 60px;
-  height: 60px;
-}
-
-button {
-  visibility: hidden;
-}
-
-
-/* // Dodger //////////////////////////////////////////////////////////////// */
-
-/* .dodger {
-  height: 20px;
-  width: 15px;
-  background-color: rgb(223, 84, 148);
-  position: absolute;
-  bottom: 100px;
-  left: 500px;
-} */
-
 /* // Bomberman ///////////////////////////////////////////////////////////// */
 
 body {
@@ -102,11 +8,20 @@ body {
 
 #bomberman {
   position: absolute;
-  width: 20px;
-  height: 25px;
-  background-color: red;
-  left: 213px;
-  top: 90px;
+  width: 48px;
+  height: 48px;
+  background-image: url(../images/spritestand.gif);
+  background-size: contain;
+  left: 220px;
+  top: 101px;
+}
+
+.moving {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url(../images/spritewalk.gif);
+  background-size: contain;
 }
 
 .box {
@@ -126,8 +41,8 @@ body {
   width: 946px;
   display: grid;
   grid-gap: 2px;
-  grid-template-columns: 30px repeat(17, 50px) 30px;
-  grid-template-rows: 30px repeat(9, 50px) 30px;
+  grid-template-columns: repeat(19, 50px);
+  grid-template-rows: repeat(11, 50px);
   grid-auto-flow: column;
 }
 

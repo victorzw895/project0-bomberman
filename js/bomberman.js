@@ -1,20 +1,21 @@
 console.log('bomberman is running!');
 
-//each time bomberman moves - collision detection
-const checkMoves = function() {
-  if ($('#bomberman').position().top === $('.border').position().top ||
-    $('#bomberman').position().left === $('.border').position().left) {
-      console.log('touching border!');
-  }
-  if ($('#bomberman').position().top === $('.walls').position().top ||
-    $('#bomberman').position().left === $('.walls').position().left) {
-      console.log('touching WALLS!');
-  }
-  if ($('#bomberman').position().top === $('.brick').position().top ||
-    $('#bomberman').position().left === $('.brick').position().left) {
-      console.log('NO THERE IS A BRICK THERE!');
-  }
+let obstacles = {
+  // border: {},
+  // walls: {},
+  // brick: {}
 }
+let border = {
+  // div1: {x: , y: , width: , height: },
+  // div2:
+};
+let walls = {};
+let brick = {};
+
+let bomberman = {};
+
+
+//each time bomberman moves - collision detection
 
 // $(document).ready(function () {
   // player 1 initial position
@@ -53,8 +54,6 @@ const checkMoves = function() {
 //   }
 // })
 
-let bombermanX = 213;
-let bombermanY = 90;
 let boardX = 19;
 let boardY = 11;
 
@@ -63,32 +62,34 @@ $(document).ready(function () {
 
   // initializeKeyboard();
 
-
+  $(window).mousemove(function(event) {
+    console.log(event.pageX, event.pageY);
+  })
 
   const createBoard = function() {
     for (let x = 0; x < boardX; x++) {
       for (let y = 0; y < boardY; y++) {
         if (x === 0 || y === boardY-1 || x === boardX-1 || y === 0) {
-          $('.wrapper').append("<div class='border'></div>");
+          $('.wrapper').append("<div class='border impenetrable'></div>");
         }
         else if (x%2 === 0 && y%2 === 0) {
-          $('.wrapper').append("<div class='walls'></div>");
+          $('.wrapper').append("<div class='walls impenetrable'></div>");
         }
         else if (x >= 3 && x <= boardX-4) {
           if (x === 3 && y === 1) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else if (x === boardX-4 && y === 1) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else if (x === 3 && y === boardY-2) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else if (x === boardX-4 && y === boardY-2) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else if (Math.random() >= 0.3) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else {
             $('.wrapper').append("<div class='box'></div>");
@@ -96,19 +97,19 @@ $(document).ready(function () {
         }
         else if (y >= 3 && y <= boardY-4) {
           if (x === 1 && y === 3) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else if (x === boardX-2 && y === 3) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else if (x === 1 && y === boardY-4) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else if (x === boardX-2 && y === boardY-4) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else if (Math.random() >= 0.3) {
-            $('.wrapper').append("<div class='brick'></div>");
+            $('.wrapper').append("<div class='brick impenetrable'></div>");
           }
           else {
             $('.wrapper').append("<div class='box'></div>");
@@ -121,76 +122,54 @@ $(document).ready(function () {
     }
   };
 
+  // const $bomberman = $('#bomberman');
+
   createBoard();
 
+  bomberman = {
+    $bombermanX: $('#bomberman').position().left,
+    $bombermanY: $('#bomberman').position().top,
+    width: "20px",
+    height: "25px"
+  }
+
+  let $impenetrable = $('.impenetrable');
+  // let $brick = $('.brick');
+
+  for (let i = 0; i < $impenetrable.length; i++) {
+    let obstacle = $impenetrable.eq(i); // `.impenetrable:nth-child(${i})`;
+    // console.log(obstacleNum);
+    obstacles['obstacle'+i] = obstacle.position();
+  }
+
+  if (moving === true) {
+    $('#bomberman').addClass('moving')
+  }
 
 
+  // let $bombermanX = $('#bomberman').position().top;
+  // let $bombermanY = $('#bomberman').position().left;
 
+  const checkMoves = function() {
 
+    // if (rect1.x < rect2.x + rect2.width &&
+    //  rect1.x + rect1.width > rect2.x &&
+    //  rect1.y < rect2.y + rect2.height &&
+    //  rect1.y + rect1.height > rect2.y) {
+    //  }
 
-  // $(document).on('keydown', function(e){
-  //     // get keycode of current keypress event
-  //     var code = (e.keyCode || e.which);
-  //
-  //     // do nothing if it's an arrow key
-  //     if (code === 37) {
-  //         bombermanX -= 1;
-  //         console.log('works');
-  //         $('#bomberman').css('left',bombermanX + 'px');
-  //     }
-  //     if (code === 38) {
-  //         bombermanY -= 1;
-  //         console.log('works');
-  //         $('#bomberman').css('top',bombermanY + 'px');
-  //     }
-  //     if (code === 39) {
-  //         bombermanX += 1;
-  //         console.log('works');
-  //         $('#bomberman').css('left',bombermanX + 'px');
-  //     }
-  //     if (code === 40) {
-  //         bombermanY += 1;
-  //         console.log('works');
-  //         $('#bomberman').css('top',bombermanY + 'px');
-  //     }
-  //
-  //     let movement =
-  //
-  //     const move = function() {
-  //       $("#bomberman").css(movement)
-  //     }
-  // });
-
-  // $(document).on('keydown', function() {
-  //   console.log('firing');
-  //   bombermanX -= 1;
-  //   $('#bomberman').css('left',bombermanX + 'px');
-  // })
-
-  // const bombermanMove = function () {
-  //   if (moveState.left) {
-  //     bombermanX -= 1;
-  //     console.log('works');
-  //     $('#bomberman').css('left',bombermanX + 'px');
-  //   }
-  //   if (moveState.up) {
-  //     bombermanY -= 1;
-  //     console.log('works');
-  //     $('#bomberman').css('left',bombermanX + 'px');
-  //   }
-  //   if (moveState.right) {
-  //     bombermanX += 1;
-  //     console.log('works');
-  //     $('#bomberman').css('left',bombermanX + 'px');
-  //   }
-  //   if (moveState.down) {
-  //     bombermanY += 1;
-  //     console.log('works');
-  //     $('#bomberman').css('left',bombermanX + 'px');
-  //   }
-  // }
-
-  // when keypress === 'spacebar'
-  // create new div with class bomb, position absolute at bomberman position.
+    if ($('#bomberman').position().top === $('.border').position().top ||
+      $('#bomberman').position().left === $('.border').position().left) {
+        console.log('touching border!');
+    }
+    if ($('#bomberman').position().top === $('.walls').position().top ||
+      $('#bomberman').position().left === $('.walls').position().left) {
+        console.log('touching WALLS!');
+    }
+    if ($('#bomberman').position().top === $('.brick').position().top ||
+      $('#bomberman').position().left === $('.brick').position().left) {
+        console.log('NO THERE IS A BRICK THERE!');
+    }
+  }
 
 });
