@@ -1,4 +1,4 @@
-# Project 0: Tic Tac Toe
+# Project 0: Bombermna
 
 This is a simple game I built because Joel made me.
 
