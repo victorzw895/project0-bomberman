@@ -1,6 +1,6 @@
 console.log('bomberman is running!');
 
-
+// possible movements
 canMove = {
   up: true,
   right: true,
@@ -8,7 +8,7 @@ canMove = {
   left: true
 }
 
-
+// look at position and check if impenetrable objects around character
 const checkImpenetrable = function() {
   let $impenetrable = $('.impenetrable');
 
@@ -73,8 +73,10 @@ const checkImpenetrable = function() {
   console.log(canMove);
 }
 
+
+
 $(document).ready(function() {
-  checkImpenetrable();
+  checkImpenetrable(); // initialize position and check for impenetrable objects
 })
 
 
@@ -82,12 +84,9 @@ $(document).ready(function() {
   let moving = false;
 
   $(document).keydown(function(e) {
-    // event.preventDefault();
-    // if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
-          pressedKeys[e.which] = true;
-          // checkImpenetrable();
-    // }
-    // console.log(pressedKeys)
+    if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 || e.which === 32) {
+      pressedKeys[e.which] = true;
+    }
   })
 
   $(document).keyup(function(e) {
@@ -97,7 +96,7 @@ $(document).ready(function() {
   })
 
 
-  const directionSpeed = {
+  const action = {
     37: {
       left: "-=26"
     },
@@ -127,7 +126,7 @@ $(document).on("keydown",(function(e) {
   //   moving = false;
   //
   //   const move = function() {
-  //     $('#bomberman').css(directionSpeed[e.which])
+  //     $('#bomberman').css(action[e.which])
   //     moving = true;
   //   }
   //   console.log(e.which)
@@ -172,8 +171,21 @@ $(document).on("keydown",(function(e) {
 
   // if (e.which === 37 &&)
 
+  const placeBomb = function() {
+    let $box = $('.box');
+    for (let i = 0; i < $box.length; i++) {
+      let $boxPosition = $box.eq(i).position()
+      let $bombermanPosition = $('#bomberman').position()
+      if ($boxPosition.left === $bombermanPosition.left && $boxPosition.top === $bombermanPosition.top) {
+        $('.box').eq(i).addClass('burger');
+      }
+    }
+  }
 
-
+  if (e.which === 32) {
+    event.preventDefault();
+    placeBomb();
+  }
 
 
   if ((e.which === 37 && canMove.left) || (e.which === 38 && canMove.up) || (e.which === 39 && canMove.right) || (e.which === 40 && canMove.down) ) { // dont run for any other button except arrow keys
@@ -186,16 +198,15 @@ $(document).on("keydown",(function(e) {
     //  rect1.y + rect1.height > rect2.y) {
     //  }
 
-
     // else {
       const move = function() {
         // console.log(bX);
         // console.log(bY);
-        $('#bomberman').css(directionSpeed[e.which])
-        $('.top').css(directionSpeed[e.which])
-        $('.right').css(directionSpeed[e.which])
-        $('.bottom').css(directionSpeed[e.which])
-        $('.left').css(directionSpeed[e.which])
+        $('#bomberman').css(action[e.which])
+        $('.top').css(action[e.which])
+        $('.right').css(action[e.which])
+        $('.bottom').css(action[e.which])
+        $('.left').css(action[e.which])
         // if (e.which === 37) {
         //   bomberman.bX -= 26;
         // }
@@ -271,6 +282,6 @@ $(document).on("keyup",(function(e) {
     moving = false;
   }
 
-  checkImpenetrable();
+  checkImpenetrable(); // checking only once after init after keyup, if allowing function to hold keys, need to check other times
 
 }))
