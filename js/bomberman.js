@@ -129,8 +129,15 @@ $(document).ready(function () {
   bomberman = {
     $bombermanX: $('#bomberman').position().left,
     $bombermanY: $('#bomberman').position().top,
-    width: "20px",
-    height: "25px"
+    width: "50px",
+    height: "50px"
+  }
+
+  sides = {
+    top: { tX: $('.top').position().left, tY: $('.top').position().left },
+    right: { rX: $('.right').position().left, rY: $('.right').position().left },
+    bottom: { bX: $('.bottom').position().left, bY: $('.bottom').position().left },
+    left: { lX: $('.left').position().left, lY: $('.left').position().left }
   }
 
   let $impenetrable = $('.impenetrable');
