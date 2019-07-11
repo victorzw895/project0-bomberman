@@ -76,24 +76,24 @@ $(document).ready(function () {
           $('.wrapper').append("<div class='walls impenetrable'></div>");
         }
         else if (x >= 3 && x <= boardX-4) {
-          if (x === 3 && y === 1) {
-            $('.wrapper').append("<div class='brick impenetrable'></div>");
-          }
-          else if (x === boardX-4 && y === 1) {
-            $('.wrapper').append("<div class='brick impenetrable'></div>");
-          }
-          else if (x === 3 && y === boardY-2) {
-            $('.wrapper').append("<div class='brick impenetrable'></div>");
-          }
-          else if (x === boardX-4 && y === boardY-2) {
-            $('.wrapper').append("<div class='brick impenetrable'></div>");
-          }
-          else if (Math.random() >= 0.3) {
-            $('.wrapper').append("<div class='brick impenetrable'></div>");
-          }
-          else {
+          // if (x === 3 && y === 1) {
+          //   $('.wrapper').append("<div class='brick impenetrable'></div>");
+          // }
+          // else if (x === boardX-4 && y === 1) {
+          //   $('.wrapper').append("<div class='brick impenetrable'></div>");
+          // }
+          // else if (x === 3 && y === boardY-2) {
+          //   $('.wrapper').append("<div class='brick impenetrable'></div>");
+          // }
+          // else if (x === boardX-4 && y === boardY-2) {
+          //   $('.wrapper').append("<div class='brick impenetrable'></div>");
+          // }
+          // else if (Math.random() >= 0.3) {
+          //   $('.wrapper').append("<div class='brick impenetrable'></div>");
+          // }
+          // else {
             $('.wrapper').append("<div class='box'></div>");
-          }
+          // }
         }
         else if (y >= 3 && y <= boardY-4) {
           if (x === 1 && y === 3) {
