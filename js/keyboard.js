@@ -85,6 +85,7 @@ $(document).ready(function() {
 
   $(document).keydown(function(e) {
     if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 || e.which === 32) {
+      event.preventDefault();
       pressedKeys[e.which] = true;
     }
   })
@@ -171,13 +172,74 @@ $(document).on("keydown",(function(e) {
 
   // if (e.which === 37 &&)
 
+const breakBricks = function( $burgerPosition ) {
+
+
+  console.log( $burgerPosition );
+  console.log( $burgerPosition.left );
+
+  for (let i = 0; i < $('.impenetrable').length; i++) {
+    if ($('.impenetrable').eq(i).hasClass('brick')) {
+      if ( $burgerPosition.left + 52 === $('.impenetrable').eq(i).position().left && $burgerPosition.top === $('.impenetrable').eq(i).position().top ) {
+        console.log('exploding bricks!');
+        $('.impenetrable').eq(i).addClass('box');
+        $('.impenetrable').eq(i).removeClass('brick');
+        $('.impenetrable').eq(i).removeClass('impenetrable');
+      }
+      if ( $burgerPosition.left - 52 === $('.impenetrable').eq(i).position().left && $burgerPosition.top === $('.impenetrable').eq(i).position().top ) {
+        console.log('exploding bricks!');
+        $('.impenetrable').eq(i).addClass('box');
+        $('.impenetrable').eq(i).removeClass('brick');
+        $('.impenetrable').eq(i).removeClass('impenetrable');
+      }
+      if ( $burgerPosition.left === $('.impenetrable').eq(i).position().left && $burgerPosition.top + 52 === $('.impenetrable').eq(i).position().top ) {
+        console.log('exploding bricks!');
+        $('.impenetrable').eq(i).addClass('box');
+        $('.impenetrable').eq(i).removeClass('brick');
+        $('.impenetrable').eq(i).removeClass('impenetrable');
+      }
+      if ( $burgerPosition.left === $('.impenetrable').eq(i).position().left && $burgerPosition.top - 52 === $('.impenetrable').eq(i).position().top ) {
+        console.log('exploding bricks!');
+        $('.impenetrable').eq(i).addClass('box');
+        $('.impenetrable').eq(i).removeClass('brick');
+        $('.impenetrable').eq(i).removeClass('impenetrable');
+      }
+    }
+  }
+
+  
+}
+
+
+
   const placeBomb = function() {
     let $box = $('.box');
+    // need to setTimeout to explode bomb
     for (let i = 0; i < $box.length; i++) {
+
       let $boxPosition = $box.eq(i).position()
       let $bombermanPosition = $('#bomberman').position()
+
+
       if ($boxPosition.left === $bombermanPosition.left && $boxPosition.top === $bombermanPosition.top) {
+
+        let $burgerPosition = $boxPosition;
+        console.log($burgerPosition);
+
+        const explode = function() {
+
+          console.log($burgerPosition);
+
+          breakBricks( $burgerPosition );
+          // checkImpenetrable();
+          console.log('BOOOM!');
+          $('.box').eq(i).removeClass('burger');
+
+        }
+
+
         $('.box').eq(i).addClass('burger');
+        setTimeout(explode,3000);
       }
     }
   }
@@ -189,6 +251,7 @@ $(document).on("keydown",(function(e) {
 
 
   if ((e.which === 37 && canMove.left) || (e.which === 38 && canMove.up) || (e.which === 39 && canMove.right) || (e.which === 40 && canMove.down) ) { // dont run for any other button except arrow keys
+    event.preventDefault();
     // console.log(bomberman);
     // check hit impenetrable
 

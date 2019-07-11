@@ -66,6 +66,14 @@ $(document).ready(function () {
     console.log(event.pageX, event.pageY);
   })
 
+  const createPlayer = function() {
+
+  }
+
+  const createBomb = function() {
+
+  }
+
   const createBoard = function() {
     for (let x = 0; x < boardX; x++) {
       for (let y = 0; y < boardY; y++) {
@@ -141,9 +149,13 @@ $(document).ready(function () {
   let $impenetrable = $('.impenetrable');
   // let $brick = $('.brick');
 
+
+  
   for (let i = 0; i < $impenetrable.length; i++) {
     let obstacle = $impenetrable.eq(i); // `.impenetrable:nth-child(${i})`;
     // console.log(obstacleNum);
+    // $impenetrable.eq(i).position()
+
     obstacles['obstacle'+i] = obstacle.position();
   }
 
