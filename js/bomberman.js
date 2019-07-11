@@ -39,13 +39,13 @@ $(document).ready(function () {
       left: { top: leftX, left: leftY }
     }
 
-    $('.wrapper').append("<div id=bomberman></div>")
+    $('#player').append("<div class=bomberman></div>")
     //
-    console.log($('#bomberman'))
-    console.log($('#bomberman').position())
+    console.log($('.bomberman'))
+    console.log($('.bomberman').position())
     console.log($(".box").eq(0))
     console.log($(".box").eq(0).position())
-    $('#bomberman').css($firstbox);
+    $('.bomberman').css($firstbox);
     $('.top').css(position.top);
     $('.right').css(position.right);
     $('.bottom').css(position.bottom);

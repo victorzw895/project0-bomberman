@@ -118,28 +118,38 @@ $(document).ready(function() {
 
     // save to variable function to detonateBreaks when bomb detonates next to bricks
     const detonateBreaks = function( $burgerPosition ) {
-      let bX = $('#bomberman').position().left;
-      let bY = $('#bomberman').position().top;
+      let bX = $('.bomberman').position().left;
+      let bY = $('.bomberman').position().top;
       // If player is on bomb, or next to bomb, die
       if ( bX === $burgerPosition.left && bY === $burgerPosition.top ) { // have to use left and top
         console.log('you dead');
-        $('#bomberman').removeClass('bomberman');
+        $('.bomberman').addClass('dead');
+        $('.bomberman').removeClass('.bomberman');
+        $(document).unbind(); // works for now, ideally just stop bomberman from being able to move, if unbind, eventPreventDefault disabled
       }
-      if ( bX >= $burgerPosition.left - 52 && bY === $burgerPosition.top ) {
+      else if ( bX >= $burgerPosition.left - 52 && bY === $burgerPosition.top ) {
         console.log('you still dead');
-        $('#bomberman').removeClass('bomberman');
+        $('.bomberman').addClass('dead');
+        $('.bomberman').removeClass('.bomberman');
+        $(document).unbind();
       }
-      if ( bX <= $burgerPosition.left + 52 && bY === $burgerPosition.top ) {
+      else if ( bX <= $burgerPosition.left + 52 && bY === $burgerPosition.top ) {
         console.log('you die anyways');
-        $('#bomberman').removeClass('bomberman');
+        $('.bomberman').addClass('dead');
+        $('.bomberman').removeClass('.bomberman');
+        $(document).unbind();
       }
-      if ( bX === $burgerPosition.left && bY >= $burgerPosition.top + 52 ) {
+      else if ( bX === $burgerPosition.left && bY >= $burgerPosition.top + 52 ) {
         console.log('you die anyways');
-        $('#bomberman').removeClass('bomberman');
+        $('.bomberman').addClass('dead');
+        $('.bomberman').removeClass('.bomberman');
+        $(document).unbind();
       }
-      if ( bX === $burgerPosition.left && bY <= $burgerPosition.top - 52 ) {
+      else if ( bX === $burgerPosition.left && bY <= $burgerPosition.top - 52 ) {
         console.log('you die anyways');
-        $('#bomberman').removeClass('bomberman');
+        $('.bomberman').addClass('dead');
+        $('.bomberman').removeClass('.bomberman');
+        $(document).unbind();
       }
 
 
@@ -201,7 +211,7 @@ $(document).ready(function() {
         for (let i = 0; i < $box.length; i++) {
 
           let $boxPosition = $box.eq(i).position()
-          let $bombermanPosition = $('#bomberman').position()
+          let $bombermanPosition = $('.bomberman').position()
 
           // if space is position where player is standing, place bomb there
           if ($boxPosition.left === $bombermanPosition.left && $boxPosition.top === $bombermanPosition.top) {
@@ -245,7 +255,7 @@ $(document).ready(function() {
       const move = function() {
         // console.log(bX);
         // console.log(bY);
-        $('#bomberman').css(action[e.which])
+        $('.bomberman').css(action[e.which])
         $('.top').css(action[e.which])
         $('.right').css(action[e.which])
         $('.bottom').css(action[e.which])
