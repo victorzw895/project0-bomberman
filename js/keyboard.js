@@ -1,8 +1,10 @@
 console.log('bomberman is running!');
 
+// if burger placed, stop from dropping multiple burgers
+// Future variable change to counter, if power up allow multiple bombs ////////
 let burgerPlaced = false ;
 
-// possible movements
+// bomberman possible movements ///////////////////////////////////////////////
 let canMove = {
   up: true,
   right: true,
