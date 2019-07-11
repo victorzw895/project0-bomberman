@@ -120,6 +120,13 @@ $(document).ready(function() {
     const detonateBreaks = function( $burgerPosition ) {
       let bX = $('.bomberman').position().left;
       let bY = $('.bomberman').position().top;
+
+      // else if ((bX + 52 === $burgerPosition.left && bY - 26 === $burgerPosition.top) ||
+      //          ((bX === $burgerPosition.left - 26) && bY === $burgerPosition.top)) {
+      //   // console.log('still cant go up!');
+      //   canMove.up = false;
+      // }
+
       // If player is on bomb, or next to bomb, die
       if ( bX === $burgerPosition.left && bY === $burgerPosition.top ) { // have to use left and top
         // console.log('you dead');
@@ -129,8 +136,9 @@ $(document).ready(function() {
         $('.bomberman').removeClass('.bomberman');
         $(document).unbind(); // works for now, ideally just stop bomberman from being able to move, if unbind, eventPreventDefault disabled
       }
-      if ( bX >= $burgerPosition.left - 78 && bX <= $burgerPosition.left + 26 && bY === $burgerPosition.top ) {
-        // console.log('you still dead');
+      // player is left of burger
+      else if ( bX >= $burgerPosition.left - 78 && bX <= $burgerPosition.left + 26 && bY === $burgerPosition.top ) {
+        console.log('you still dead');
         // console.log($burgerPosition.left - 52)
         // console.log(bX >= ($burgerPosition.left - 52));
         // console.log('left:', bX, 'top:', bY);
@@ -139,24 +147,27 @@ $(document).ready(function() {
         $('.bomberman').removeClass('.bomberman');
         $(document).unbind();
       }
-      else if ( bX <= $burgerPosition.left + 78 && bX >= $burgerPosition.left - 26 && bY === $burgerPosition.top ) {
-        // console.log('you die anyways1');
+      // if player is right of burger
+      else if ( bX <= $burgerPosition.left + 78 && bX >= $burgerPosition.left + 26 && bY === $burgerPosition.top ) {
+        console.log('you die anyways1');
         // console.log('left:', bX, 'top:', bY);
         // console.log($burgerPosition.left, $burgerPosition.top)
         $('.bomberman').addClass('dead');
         $('.bomberman').removeClass('.bomberman');
         $(document).unbind();
       }
-      else if ( bX === $burgerPosition.left && bY >= $burgerPosition.top + 78 && bY <= $burgerPosition.top - 26 ) {
-        // console.log('you die anyways2');
+      // if player is below burger
+      else if ( bY <= $burgerPosition.top + 78 && bY >= $burgerPosition.top + 26 && bX === $burgerPosition.left ) {
+        console.log('you die anyways2');
         // console.log('left:', bX, 'top:', bY);
         // console.log($burgerPosition.left, $burgerPosition.top)
         $('.bomberman').addClass('dead');
         $('.bomberman').removeClass('.bomberman');
         $(document).unbind();
       }
-      else if ( bX === $burgerPosition.left && bY <= $burgerPosition.top - 78  && bY >= $burgerPosition.top + 26 ) {
-        // console.log('you die anyways3');
+      // player on top of burger
+      else if ( bY >= $burgerPosition.top - 78  && bY <= $burgerPosition.top + 26 && bX === $burgerPosition.left ) {
+        console.log('you die anyways3');
         // console.log('left:', bX, 'top:', bY);
         // console.log($burgerPosition.left, $burgerPosition.top)
         $('.bomberman').addClass('dead');
