@@ -150,7 +150,7 @@ $(document).ready(function () {
   // let $brick = $('.brick');
 
 
-  
+
   for (let i = 0; i < $impenetrable.length; i++) {
     let obstacle = $impenetrable.eq(i); // `.impenetrable:nth-child(${i})`;
     // console.log(obstacleNum);

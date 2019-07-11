@@ -27,44 +27,45 @@ const checkImpenetrable = function() {
   canMove.left = true;
 
 
+
   for (let i = 0; i < $impenetrable.length; i ++) {
 
-    if (topX === obstacles['obstacle'+i].left && topY === obstacles['obstacle'+i].top) {
+    if (topX === $impenetrable.eq(i).position().left && topY === $impenetrable.eq(i).position().top) {
       console.log('cant go up!');
       canMove.up = false;
     }
-    else if ((topX === ((obstacles['obstacle'+i].left) + 26) && topY === obstacles['obstacle'+i].top) ||
-             (topX === ((obstacles['obstacle'+i].left) - 26) && topY === obstacles['obstacle'+i].top)) {
+    else if ((topX === (($impenetrable.eq(i).position().left) + 26) && topY === $impenetrable.eq(i).position().top) ||
+             (topX === (($impenetrable.eq(i).position().left) - 26) && topY === $impenetrable.eq(i).position().top)) {
       console.log('still cant go up!');
       canMove.up = false;
     }
 
-    if (rightX === obstacles['obstacle'+i].left && rightY === obstacles['obstacle'+i].top) {
+    if (rightX === $impenetrable.eq(i).position().left && rightY === $impenetrable.eq(i).position().top) {
       console.log('cant go right');
       canMove.right = false;
     }
-    else if ((rightX === obstacles['obstacle'+i].left && rightY === (obstacles['obstacle'+i].top) + 26) ||
-             (rightX === obstacles['obstacle'+i].left && rightY === (obstacles['obstacle'+i].top) - 26)) {
+    else if ((rightX === $impenetrable.eq(i).position().left && rightY === ($impenetrable.eq(i).position().top) + 26) ||
+             (rightX === $impenetrable.eq(i).position().left && rightY === ($impenetrable.eq(i).position().top) - 26)) {
       console.log('still cant go right!');
       canMove.right = false;
     }
 
-    if (bottomX === obstacles['obstacle'+i].left && bottomY === obstacles['obstacle'+i].top) {
+    if (bottomX === $impenetrable.eq(i).position().left && bottomY === $impenetrable.eq(i).position().top) {
       console.log('cant go down!');
       canMove.down = false;
     }
-    else if ((bottomX === ((obstacles['obstacle'+i].left) + 26) && bottomY === obstacles['obstacle'+i].top) ||
-             (bottomX === ((obstacles['obstacle'+i].left) - 26) && bottomY === obstacles['obstacle'+i].top)) {
+    else if ((bottomX === (($impenetrable.eq(i).position().left) + 26) && bottomY === $impenetrable.eq(i).position().top) ||
+             (bottomX === (($impenetrable.eq(i).position().left) - 26) && bottomY === $impenetrable.eq(i).position().top)) {
       console.log('still cant go down!');
       canMove.down = false;
     }
 
-    if (leftX === obstacles['obstacle'+i].left && leftY === obstacles['obstacle'+i].top) {
+    if (leftX === $impenetrable.eq(i).position().left && leftY === $impenetrable.eq(i).position().top) {
       console.log('cant go left!');
       canMove.left = false;
     }
-    else if ((leftX === obstacles['obstacle'+i].left && leftY === (obstacles['obstacle'+i].top) + 26) ||
-             (leftX === obstacles['obstacle'+i].left && leftY === (obstacles['obstacle'+i].top) - 26)) {
+    else if ((leftX === $impenetrable.eq(i).position().left && leftY === ($impenetrable.eq(i).position().top) + 26) ||
+             (leftX === $impenetrable.eq(i).position().left && leftY === ($impenetrable.eq(i).position().top) - 26)) {
       console.log('still cant go left!');
       canMove.left = false;
     }
@@ -207,7 +208,7 @@ const breakBricks = function( $burgerPosition ) {
     }
   }
 
-  
+
 }
 
 
