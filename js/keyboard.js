@@ -1,17 +1,20 @@
 console.log('bomberman is running!');
 
+let burgerPlaced = false ;
+
 // possible movements
-canMove = {
+let canMove = {
   up: true,
   right: true,
   down: true,
   left: true
-}
+};
 
 // look at position and check if impenetrable objects around character
 const checkImpenetrable = function() {
   let $impenetrable = $('.impenetrable');
 
+  // get position left/top of boxes surrounding character // can remove if working similar to bomb
   let topX = $('.top').position().left;
   let topY = $('.top').position().top;
   let rightX = $('.right').position().left;
@@ -21,69 +24,72 @@ const checkImpenetrable = function() {
   let leftX = $('.left').position().left;
   let leftY = $('.left').position().top;
 
+  // reset all possible momvements to true
   canMove.up = true;
   canMove.right = true;
   canMove.down = true;
   canMove.left = true;
 
-
-
+  // check all current impenetrable objects.
+  // if they are equal to boxes surrounding player or partially, set false to being able to move in that direction
   for (let i = 0; i < $impenetrable.length; i ++) {
 
+    // check top boxes
     if (topX === $impenetrable.eq(i).position().left && topY === $impenetrable.eq(i).position().top) {
-      console.log('cant go up!');
+      // console.log('cant go up!');
       canMove.up = false;
     }
     else if ((topX === (($impenetrable.eq(i).position().left) + 26) && topY === $impenetrable.eq(i).position().top) ||
              (topX === (($impenetrable.eq(i).position().left) - 26) && topY === $impenetrable.eq(i).position().top)) {
-      console.log('still cant go up!');
+      // console.log('still cant go up!');
       canMove.up = false;
     }
 
+    // check right boxes
     if (rightX === $impenetrable.eq(i).position().left && rightY === $impenetrable.eq(i).position().top) {
-      console.log('cant go right');
+      // console.log('cant go right');
       canMove.right = false;
     }
     else if ((rightX === $impenetrable.eq(i).position().left && rightY === ($impenetrable.eq(i).position().top) + 26) ||
              (rightX === $impenetrable.eq(i).position().left && rightY === ($impenetrable.eq(i).position().top) - 26)) {
-      console.log('still cant go right!');
+      // console.log('still cant go right!');
       canMove.right = false;
     }
 
+    // check bottom boxes
     if (bottomX === $impenetrable.eq(i).position().left && bottomY === $impenetrable.eq(i).position().top) {
-      console.log('cant go down!');
+      // console.log('cant go down!');
       canMove.down = false;
     }
     else if ((bottomX === (($impenetrable.eq(i).position().left) + 26) && bottomY === $impenetrable.eq(i).position().top) ||
              (bottomX === (($impenetrable.eq(i).position().left) - 26) && bottomY === $impenetrable.eq(i).position().top)) {
-      console.log('still cant go down!');
+      // console.log('still cant go down!');
       canMove.down = false;
     }
 
+    // check left boxes
     if (leftX === $impenetrable.eq(i).position().left && leftY === $impenetrable.eq(i).position().top) {
-      console.log('cant go left!');
+      // console.log('cant go left!');
       canMove.left = false;
     }
     else if ((leftX === $impenetrable.eq(i).position().left && leftY === ($impenetrable.eq(i).position().top) + 26) ||
              (leftX === $impenetrable.eq(i).position().left && leftY === ($impenetrable.eq(i).position().top) - 26)) {
-      console.log('still cant go left!');
+      // console.log('still cant go left!');
       canMove.left = false;
     }
-
   }
-  console.log(canMove);
 }
 
 
-
 $(document).ready(function() {
-  checkImpenetrable(); // initialize position and check for impenetrable objects
-})
+  // checkImpenetrable(); // initialize position and check for impenetrable objects
 
 
+  // keep track of keys pressed and if currently moving
   const pressedKeys = {};
   let moving = false;
 
+  // return true for arrow keys being pressed
   $(document).keydown(function(e) {
     if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 || e.which === 32) {
       event.preventDefault();
@@ -91,178 +97,149 @@ $(document).ready(function() {
     }
   })
 
+  // delete for arrows not being pressed
   $(document).keyup(function(e) {
-    // event.preventDefault();
     delete pressedKeys[e.which];
     // checkImpenetrable();
   })
 
-
+  // pixels character will move each time
   const action = {
-    37: {
-      left: "-=26"
-    },
-
-    38: {
-      top: "-=26"
-    },
-
-    39: {
-      left: "+=26"
-    },
-
-    40: {
-      top: "+=26"
-    },
-
-    32: {
-      //drop bomb
-    }
-  }
-
-$(document).on("keydown",(function(e) {
-  // event.preventDefault();
-  // pressedKeys = _.mapValues(pressedKeys, () => false); // lodash.js
-  // $(document).on("keydown",(function(e) {
-  //   clearInterval(intervalId)
-  //   moving = false;
-  //
-  //   const move = function() {
-  //     $('#bomberman').css(action[e.which])
-  //     moving = true;
-  //   }
-  //   console.log(e.which)
-  //   if (!moving && pressedKeys[e.which] === true) {
-  //     // if (pressedKeys[e.which] === true && e.which === 39) {
-  //       intervalId = setInterval(move, 1);
-  //   }
-  // }))
-  // checkMoves();
-  // NEED TO UPDATE BOMBERMAN LOCATION
-
-
-  // if (bX < (obstacles['obstacle'+i].left + 50) &&
-  //     bX + 50 > obstacles['obstacle'+i].left &&
-  //     bY < (obstacles['obstacle'+i].top) + 50 &&
-  //     bY + 50 > obstacles['obstacle'+i].top) {
-  //       if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
-  //         // clearInterval(intervalId)
-  //         console.log('this is an obstacle');
-  //       }
-  // }
-  // else {
-  //   console.log('you can keep walking');
-  // }
-  // let bX = $('#bomberman').position().left;
-  // let bY = $('#bomberman').position().top;
-  // let topX = $('.top').position().left;
-  // let topY = $('.top').position().top;
-  // let rightX = $('.right').position().left;
-  // let rightY = $('.right').position().top;
-  // let bottomX = $('.bottom').position().left;
-  // let bottomY = $('.bottom').position().top;
-  // let leftX = $('.left').position().left;
-  // let leftY = $('.left').position().top;
-  //
-  //
-  // for (let i = 0; i < $impenetrable.length; i ++) {
-  //   if (topX === obstacles['obstacle'+i].left) {
-  //     console.log('cant go top!');
-  //   }
-  // }
-
-  // if (e.which === 37 &&)
-
-const breakBricks = function( $burgerPosition ) {
-
-
-  console.log( $burgerPosition );
-  console.log( $burgerPosition.left );
-
-  for (let i = 0; i < $('.impenetrable').length; i++) {
-    if ($('.impenetrable').eq(i).hasClass('brick')) {
-      if ( $burgerPosition.left + 52 === $('.impenetrable').eq(i).position().left && $burgerPosition.top === $('.impenetrable').eq(i).position().top ) {
-        console.log('exploding bricks!');
-        $('.impenetrable').eq(i).addClass('box');
-        $('.impenetrable').eq(i).removeClass('brick');
-        $('.impenetrable').eq(i).removeClass('impenetrable');
-      }
-      if ( $burgerPosition.left - 52 === $('.impenetrable').eq(i).position().left && $burgerPosition.top === $('.impenetrable').eq(i).position().top ) {
-        console.log('exploding bricks!');
-        $('.impenetrable').eq(i).addClass('box');
-        $('.impenetrable').eq(i).removeClass('brick');
-        $('.impenetrable').eq(i).removeClass('impenetrable');
-      }
-      if ( $burgerPosition.left === $('.impenetrable').eq(i).position().left && $burgerPosition.top + 52 === $('.impenetrable').eq(i).position().top ) {
-        console.log('exploding bricks!');
-        $('.impenetrable').eq(i).addClass('box');
-        $('.impenetrable').eq(i).removeClass('brick');
-        $('.impenetrable').eq(i).removeClass('impenetrable');
-      }
-      if ( $burgerPosition.left === $('.impenetrable').eq(i).position().left && $burgerPosition.top - 52 === $('.impenetrable').eq(i).position().top ) {
-        console.log('exploding bricks!');
-        $('.impenetrable').eq(i).addClass('box');
-        $('.impenetrable').eq(i).removeClass('brick');
-        $('.impenetrable').eq(i).removeClass('impenetrable');
-      }
-    }
+    37: { left: "-=26" },
+    38: { top: "-=26" },
+    39: { left: "+=26" },
+    40: { top: "+=26" }
   }
 
 
-}
+  $(document).on("keydown",(function(e) {
+
+    // save to variable function to detonateBreaks when bomb detonates next to bricks
+    const detonateBreaks = function( $burgerPosition ) {
+      let bX = $('#bomberman').position().left;
+      let bY = $('#bomberman').position().top;
+      // If player is on bomb, or next to bomb, die
+      if ( bX === $burgerPosition.left && bY === $burgerPosition.top ) { // have to use left and top
+        console.log('you dead');
+        $('#bomberman').removeClass('bomberman');
+      }
+      if ( bX >= $burgerPosition.left - 52 && bY === $burgerPosition.top ) {
+        console.log('you still dead');
+        $('#bomberman').removeClass('bomberman');
+      }
+      if ( bX <= $burgerPosition.left + 52 && bY === $burgerPosition.top ) {
+        console.log('you die anyways');
+        $('#bomberman').removeClass('bomberman');
+      }
+      if ( bX === $burgerPosition.left && bY >= $burgerPosition.top + 52 ) {
+        console.log('you die anyways');
+        $('#bomberman').removeClass('bomberman');
+      }
+      if ( bX === $burgerPosition.left && bY <= $burgerPosition.top - 52 ) {
+        console.log('you die anyways');
+        $('#bomberman').removeClass('bomberman');
+      }
+
+
+    // console.log( $burgerPosition );
+    // console.log( $burgerPosition.left );
+
+      // for all impenetrable objects, check if they have class brick
+      // if class brick, and its position is surrounding bomb, add regular box class, remove brick and impenetrable class
 
 
 
-  const placeBomb = function() {
-    let $box = $('.box');
-    // need to setTimeout to explode bomb
-    for (let i = 0; i < $box.length; i++) {
+      for (let i = 0; i < $('.impenetrable').length; i++) {
+        if ($('.impenetrable').eq(i).hasClass('brick')) {
 
-      let $boxPosition = $box.eq(i).position()
-      let $bombermanPosition = $('#bomberman').position()
+          // if brick is right of burger
+          if ( $burgerPosition.left + 52 === $('.impenetrable').eq(i).position().left && $burgerPosition.top === $('.impenetrable').eq(i).position().top ) {
+            console.log('exploding right bricks!');
+            $('.impenetrable').eq(i).addClass('box');
+            $('.impenetrable').eq(i).removeClass('brick');
+            $('.impenetrable').eq(i).removeClass('impenetrable');
+          }
+          // if brick is left of burger
+          if ( $burgerPosition.left - 52 === $('.impenetrable').eq(i).position().left && $burgerPosition.top === $('.impenetrable').eq(i).position().top ) {
+            console.log('exploding left bricks!');
+            $('.impenetrable').eq(i).addClass('box');
+            $('.impenetrable').eq(i).removeClass('brick');
+            $('.impenetrable').eq(i).removeClass('impenetrable');
+          }
 
-
-      if ($boxPosition.left === $bombermanPosition.left && $boxPosition.top === $bombermanPosition.top) {
-
-        let $burgerPosition = $boxPosition;
-        console.log($burgerPosition);
-
-        const explode = function() {
-
-          console.log($burgerPosition);
-
-          breakBricks( $burgerPosition );
-          // checkImpenetrable();
-          console.log('BOOOM!');
-          $('.box').eq(i).removeClass('burger');
+          // THIS PART IS WEIRD IF I SWAP ABOVE WITH BELOW
+          // if brick is above burger
+          if ( $burgerPosition.left === $('.impenetrable').eq(i).position().left && $burgerPosition.top - 52 === $('.impenetrable').eq(i).position().top ) {
+            console.log('exploding top bricks!');
+            $('.impenetrable').eq(i).addClass('box');
+            $('.impenetrable').eq(i).removeClass('brick');
+            $('.impenetrable').eq(i).removeClass('impenetrable');
+          }
+          // if brick is below burger
+          if ( $burgerPosition.left === $('.impenetrable').eq(i).position().left && $burgerPosition.top + 52 === $('.impenetrable').eq(i).position().top ) {
+            console.log('exploding bottom bricks!');
+            $('.impenetrable').eq(i).addClass('box');
+            $('.impenetrable').eq(i).removeClass('brick');
+            $('.impenetrable').eq(i).removeClass('impenetrable');
+          }
 
         }
-
-
-        $('.box').eq(i).addClass('burger');
-        setTimeout(explode,3000);
       }
     }
-  }
-
-  if (e.which === 32) {
-    event.preventDefault();
-    placeBomb();
-  }
 
 
-  if ((e.which === 37 && canMove.left) || (e.which === 38 && canMove.up) || (e.which === 39 && canMove.right) || (e.which === 40 && canMove.down) ) { // dont run for any other button except arrow keys
-    event.preventDefault();
-    // console.log(bomberman);
-    // check hit impenetrable
+    // function to run when spacebar is pressed and bomb is placed
+    const placeBomb = function() {
+      let $box = $('.box');
+      // need to setTimeout to explode bomb
 
-    // if (rect1.x < rect2.x + rect2.width &&
-    //  rect1.x + rect1.width > rect2.x &&
-    //  rect1.y < rect2.y + rect2.height &&
-    //  rect1.y + rect1.height > rect2.y) {
-    //  }
+      // for any space the character can move (not impenetrable)
+      if (!burgerPlaced) {
+        burgerPlaced = true;
+        for (let i = 0; i < $box.length; i++) {
 
-    // else {
+          let $boxPosition = $box.eq(i).position()
+          let $bombermanPosition = $('#bomberman').position()
+
+          // if space is position where player is standing, place bomb there
+          if ($boxPosition.left === $bombermanPosition.left && $boxPosition.top === $bombermanPosition.top) {
+
+            let $burgerPosition = $boxPosition;
+            console.log($burgerPosition);
+
+            // save function for when bomb explodes, require burgerPosition as argument for detonateBreaks to know surrounding bricks to break
+            const explode = function() {
+
+              clearTimeout(timeoutId);
+
+              // console.log('BOOOM!, ', i);
+              // console.log($('.box').eq(i));
+              $('.box').eq(i).removeClass('burger');
+              burgerPlaced = false;
+
+              // console.log($burgerPosition);
+
+              detonateBreaks($burgerPosition);
+
+            }
+
+
+            $('.box').eq(i).addClass('burger');
+            timeoutId = setTimeout(explode,3000);
+          }
+        }
+      }
+    }
+
+    if (e.which === 32) {
+      event.preventDefault();
+      placeBomb();
+    }
+
+
+    if ((e.which === 37 && canMove.left) || (e.which === 38 && canMove.up) || (e.which === 39 && canMove.right) || (e.which === 40 && canMove.down) ) { // dont run for any other button except arrow keys
+      event.preventDefault();
+
       const move = function() {
         // console.log(bX);
         // console.log(bY);
@@ -271,81 +248,28 @@ const breakBricks = function( $burgerPosition ) {
         $('.right').css(action[e.which])
         $('.bottom').css(action[e.which])
         $('.left').css(action[e.which])
-        // if (e.which === 37) {
-        //   bomberman.bX -= 26;
-        // }
-        // else if (e.which === 38) {
-        //   bomberman.bY -= 26;
-        // }
-        // else if (e.which === 39) {
-        //   bomberman.bX += 26;
-        // }
-        // else if (e.which === 40) {
-        //   bomberman.bY += 26;
-        // }
 
 
         moving = true; // move code runs only once, maybe remove this
 
-
-        // if (bX < 200) {
-        //   console.log('this should work')
-        // }
-        // else {
-        //   console.log('working appropiately');
-        // }
-
-        // let $impenetrable = $('.impenetrable');
-
-        // for (let i = 0; i < $impenetrable.length; i ++) {
-        //    // console.log('this is running');
-        //    // console.log(bomberman.$bombermanX);
-        //    // console.log(obstacles['obstacle'+i].top);
-        //    if (bX < (obstacles['obstacle'+i].left + 50) &&
-        //        bX + 50 > obstacles['obstacle'+i].left &&
-        //        bY < (obstacles['obstacle'+i].top) + 50 &&
-        //        bY + 50 > obstacles['obstacle'+i].top) {
-        //          if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
-        //            // clearInterval(intervalId)
-        //            console.log('this is an obstacle');
-        //          }
-        //    }
-        //    else {
-        //      console.log('you can keep walking');
-        //    }
-        //  }
-
-
-      //
-      //  if (bX < 167 || bY < 48 || bX + 50 > 323 || bY + 50 > 204
-      //  || (bX + 50 > 270 && bY + 50 > 152)) {
-      //     if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
-      //       // clearInterval(intervalId)
-      //     }
-      //     console.log('working');
-      //   }
-      //   else {
-      //     console.log('not working');
-      //   }
       }
-      // console.log(e.which)
+
       if (!moving && pressedKeys[e.which] === true) {
-        // if (pressedKeys[e.which] === true && e.which === 39) {
-          // intervalId = setInterval(move, 1);
           move();
       }
+    }
+  }))
+
+  $(document).on("keyup",(function(e) {
+
+    // if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
+      // clearInterval(intervalId)
+      moving = false;
     // }
-  }
-}))
 
-$(document).on("keyup",(function(e) {
-  // event.preventDefault();
-  // if (e.which === 39) {
-  if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
-    // clearInterval(intervalId)
-    moving = false;
-  }
+    checkImpenetrable(); // checking only once after init after keyup, if allowing function to hold keys, need to check other times
 
-  checkImpenetrable(); // checking only once after init after keyup, if allowing function to hold keys, need to check other times
+  }))
 
-}))
+
+})

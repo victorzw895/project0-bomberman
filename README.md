@@ -1,4 +1,4 @@
-# Project 0: Bombermna
+# Project 0: Bomberman
 
 This is a simple game I built because Joel made me.
 
@@ -7,9 +7,12 @@ This is a simple game I built because Joel made me.
 
 ## Current Bugs
 
-None that I know of
+1. burger: Burger bomb glitches when too many are placed at the same time.
 
 ## Fixed Bugs
+
+1. burger: TEMPORARY FIX, reduced number of bombs to one at a time.
+   bombs seem to have stopped glitching.
 
 
 ## TODO

@@ -1,58 +1,6 @@
 console.log('bomberman is running!');
 
-let obstacles = {
-  // border: {},
-  // walls: {},
-  // brick: {}
-}
-let border = {
-  // div1: {x: , y: , width: , height: },
-  // div2:
-};
-let walls = {};
-let brick = {};
 
-let bomberman = {};
-
-
-//each time bomberman moves - collision detection
-
-// $(document).ready(function () {
-  // player 1 initial position
-
-
-  // walls position
-
-  // generate breakable bricks
-
-  // generate bad guys
-
-  // score
-
-  // gameOver
-
-// })
-//
-// let speedX = 0; // left
-// let speedY = 0; // top
-// let x = 0; // left
-// let y = 0; // top
-//
-// let bomberman = $('#bomberman')
-//
-// $(document).keydown(function (e) {
-//   switch(e.which) {
-//     case 37: $('#bomberman').animate({left:'-=20'});
-//     break;
-//     case 38: $('#bomberman').animate({top:'-=20'});
-//     break;
-//     case 39: $('#bomberman').animate({left:'+=20'});
-//     break;
-//     case 40: $('#bomberman').animate({top:'+=20'});
-//     break;
-//
-//   }
-// })
 
 let boardX = 19;
 let boardY = 11;
@@ -130,43 +78,8 @@ $(document).ready(function () {
     }
   };
 
-  // const $bomberman = $('#bomberman');
 
   createBoard();
-  //
-  // bomberman = {
-  //   $bombermanX: $('#bomberman').position().left,
-  //   $bombermanY: $('#bomberman').position().top,
-  // }
-  //
-  // sides = {
-  //   top: { tX: $('.top').position().left, tY: $('.top').position().left },
-  //   right: { rX: $('.right').position().left, rY: $('.right').position().left },
-  //   bottom: { bX: $('.bottom').position().left, bY: $('.bottom').position().left },
-  //   left: { lX: $('.left').position().left, lY: $('.left').position().left }
-  // }
-
-  let $impenetrable = $('.impenetrable');
-  // let $brick = $('.brick');
-
-
-
-  for (let i = 0; i < $impenetrable.length; i++) {
-    let obstacle = $impenetrable.eq(i); // `.impenetrable:nth-child(${i})`;
-    // console.log(obstacleNum);
-    // $impenetrable.eq(i).position()
-
-    obstacles['obstacle'+i] = obstacle.position();
-  }
-
-  // if (moving === true) {
-  //   $('#bomberman').addClass('moving')
-  // }
-
-
-  // let $bombermanX = $('#bomberman').position().top;
-  // let $bombermanY = $('#bomberman').position().left;
-
 
 
 });
