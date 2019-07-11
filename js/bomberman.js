@@ -8,6 +8,8 @@ let boardY = 11;
 
 $(document).ready(function () {
 
+
+
   // initializeKeyboard();
 
   // tracking mouse for testing purposes ///////////////////////////////////////
@@ -19,8 +21,37 @@ $(document).ready(function () {
 
   // FUTURE FUNCTION, create player and extra players on the board /////////////
   const createPlayer = function() {
+    // should resolve GitHub Pages not responding (updating) in other laptops
+    let $firstbox =  $(".box").eq(0).position();
+    let topX = $firstbox.top - 52;
+    let topY = $firstbox.left;
+    let rightX = $firstbox.top;
+    let rightY = $firstbox.left + 52;
+    let bottomX = $firstbox.top + 52;
+    let bottomY = $firstbox.left;
+    let leftX = $firstbox.top
+    let leftY = $firstbox.left - 52;
 
+    const position = {
+      top: { top: topX, left: topY },
+      right: { top: rightX, left: rightY },
+      bottom: { top: bottomX, left: bottomY },
+      left: { top: leftX, left: leftY }
+    }
+
+    $('.wrapper').append("<div id=bomberman></div>")
+    //
+    console.log($('#bomberman'))
+    console.log($('#bomberman').position())
+    console.log($(".box").eq(0))
+    console.log($(".box").eq(0).position())
+    $('#bomberman').css($firstbox);
+    $('.top').css(position.top);
+    $('.right').css(position.right);
+    $('.bottom').css(position.bottom);
+    $('.left').css(position.left);
   }
+
   // Not sure if need this function atm ...
   const createBomb = function() {
 
@@ -106,5 +137,7 @@ $(document).ready(function () {
 
 
   createBoard();
+
+  createPlayer();
 
 });

@@ -14,8 +14,8 @@ body {
   position: absolute;
   background-image: url(../images/spritestand.gif);
   background-size: contain;
-  left: 219px;
-  top: 100px;
+  /* left: 219px; */
+  /* top: 100px; */
   width: 50px;
   height: 50px;
 }
@@ -36,8 +36,8 @@ body {
 
 .top {
   position: absolute;
-  left: 219px;
-  top: 48px;
+  /* left: 219px; */
+  /* top: 48px; */
   width: 50px;
   height: 50px;
   background-color: rgba(255, 0, 0, 0.4);
@@ -46,8 +46,8 @@ body {
 
 .right {
   position: absolute;
-  left: 271px;
-  top: 100px;
+  /* left: 271px; */
+  /* top: 100px; */
   width: 50px;
   height: 50px;
   background-color: rgba(255, 0, 0, 0.4);
@@ -56,8 +56,8 @@ body {
 
 .bottom {
   position: absolute;
-  left: 219px;
-  top: 152px;
+  /* left: 219px; */
+  /* top: 152px; */
   width: 50px;
   height: 50px;
   background-color: rgba(255, 0, 0, 0.4);
@@ -66,8 +66,8 @@ body {
 
 .left {
   position: absolute;
-  left: 167px;
-  top: 100px;
+  /* left: 167px; */
+  /* top: 100px; */
   width: 50px;
   height: 50px;
   background-color: rgba(255, 0, 0, 0.4);
