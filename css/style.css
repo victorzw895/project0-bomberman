@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+}
+
+
 /* // Bomberman ///////////////////////////////////////////////////////////// */
 
 body {
@@ -6,12 +11,12 @@ body {
   background-color: rgba(31, 40, 161, 0.44);
 }
 
-/* For multiplayer future feature */
+/* For multiplayer future feature ////////////////////////////////////////////*/
 #player {
 
 }
 
-/* bomberman player */
+/* bomberman player //////////////////////////////////////////////////////////*/
 .bomberman {
   position: absolute;
   /* background-image: url(../images/spritestand.gif); */
@@ -46,8 +51,18 @@ body {
   height: 50px;
 }
 
+/* Monsters //////////////////////////////////////////////////////////////// */
+.monster {
+  position: absolute;
+  background-image: url(../images/mon1.gif);
+  background-size: contain;
+  /* left: 219px; */
+  /* top: 100px; */
+  width: 50px;
+  height: 50px;
+}
 
-/* Game features */
+/* Game features //////////////////////////////////////////////////////////  */
 .burger {
   /* position: absolute; */
   background-image: url(../images/burger.gif);
@@ -119,7 +134,7 @@ body {
   z-index: 1;
 }
 
-/* making board, borders, walls and bricks */
+/* making board, borders, walls and bricks ////////////////////////////////  */
 
 .box {
   background-color: rgba(114, 144, 96, 0.73);

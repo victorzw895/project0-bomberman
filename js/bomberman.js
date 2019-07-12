@@ -22,15 +22,15 @@ $(document).ready(function () {
   // FUTURE FUNCTION, create player and extra players on the board /////////////
   const createPlayer = function() {
     // should resolve GitHub Pages not responding (updating) in other laptops
-    let $firstbox =  $(".box").eq(0).position();
-    let topX = $firstbox.top - 52;
-    let topY = $firstbox.left;
-    let rightX = $firstbox.top;
-    let rightY = $firstbox.left + 52;
-    let bottomX = $firstbox.top + 52;
-    let bottomY = $firstbox.left;
-    let leftX = $firstbox.top
-    let leftY = $firstbox.left - 52;
+    let $firstBox =  $(".open").eq(0).position();
+    let topX = $firstBox.top - 52;
+    let topY = $firstBox.left;
+    let rightX = $firstBox.top;
+    let rightY = $firstBox.left + 52;
+    let bottomX = $firstBox.top + 52;
+    let bottomY = $firstBox.left;
+    let leftX = $firstBox.top
+    let leftY = $firstBox.left - 52;
 
     const position = {
       top: { top: topX, left: topY },
@@ -41,12 +41,27 @@ $(document).ready(function () {
 
     $('#player').append("<div class='bomberman idle'></div>")
     //
-    $('.bomberman').css($firstbox);
+    $('.bomberman').css($firstBox);
     $('.top').css(position.top);
     $('.right').css(position.right);
     $('.bottom').css(position.bottom);
     $('.left').css(position.left);
   }
+
+  const createMonster = function() {
+    let $secondBox = $('.open').eq(3).position();
+    let $thirdBox = $('.open').eq(8).position();
+    let $fourthBox = $('.open').eq(11).position();
+
+    $('#monster').append("<div class='monster second'></div>")
+    $('.second').css($secondBox);
+    $('#monster').append("<div class='monster third'></div>")
+    $('.third').css($thirdBox);
+    $('#monster').append("<div class='monster fourth'></div>")
+    $('.fourth').css($fourthBox);
+
+  }
+
 
   // Not sure if need this function atm ...
   const createBomb = function() {
@@ -135,7 +150,7 @@ $(document).ready(function () {
         }
         // 3 boxes each corner for player starting position
         else {
-          $('.wrapper').append("<div class='box'></div>");
+          $('.wrapper').append("<div class='box open'></div>");
         }
       }
     }
@@ -146,4 +161,5 @@ $(document).ready(function () {
 
   createPlayer();
 
+  createMonster();
 });

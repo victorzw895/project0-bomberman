@@ -2,7 +2,7 @@
 
 Remake of bomberman, because its my all time favourite retro game.
 
-## Version 2.9
+## Version 3
 
 ## Table of Contents
 1. Link
