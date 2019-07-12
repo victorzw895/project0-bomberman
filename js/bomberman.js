@@ -89,7 +89,7 @@ $(document).ready(function () {
           }
           // boolean, if number over 0.3/1, make brick (random generate bricks)
           else if (Math.random() >= 0.3) {
-            if (Math.random() >= 0.5) {
+            if (Math.random() >= 0.6) {
               $('.wrapper').append("<div class='brick powerup impenetrable'></div>")
             }
             else {
@@ -121,7 +121,7 @@ $(document).ready(function () {
           }
           // boolean, if number over 0.3/1, make brick (random generate bricks)
           else if (Math.random() >= 0.3) {
-            if (Math.random() >= 0.5) {
+            if (Math.random() >= 0.75) {
               $('.wrapper').append("<div class='brick powerup impenetrable'></div>")
             }
             else {

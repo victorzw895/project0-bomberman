@@ -116,6 +116,8 @@ $(document).ready(function() {
 
   $(document).on("keydown",(function(e) {
 
+
+    // change character from idle to walking animation
     if (pressedKeys[e.which] === true) {
       $('.bomberman').addClass('walking');
       $('.bomberman').removeClass('idle');
@@ -355,6 +357,16 @@ $(document).ready(function() {
     // if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
       // clearInterval(intervalId)
       moving = false;
+
+    //power up Function
+    // console.log($('.powerup'))
+    for (let i = 0; i < $('.powerup').length; i ++) {
+      if ($('.powerup').eq(i).position().left === $('.bomberman').position().left &&
+          $('.powerup').eq(i).position().top === $('.bomberman').position().top) {
+        console.log('GRABBING POWERUP!');
+        $('.powerup').eq(i).removeClass('powerup');
+      }
+    }
     // }
 
     checkImpenetrable(); // checking only once after init after keyup, if allowing function to hold keys, need to check other times

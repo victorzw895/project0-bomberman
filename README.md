@@ -2,6 +2,8 @@
 
 Remake of bomberman, because its my all time favourite retro game.
 
+## Version 2.9
+
 ## Link - Deployed on GitHub Pages
 [Bomberman Game](https://victorzw895.github.io/project0-bomberman/)
 
@@ -10,6 +12,12 @@ Remake of bomberman, because its my all time favourite retro game.
 - Place a bomb with space bar
 - Detect collision with outer walls, bricks, inner walls
 - Clear bricks and path with bombs, able to walk through
+
+### New Features
+- Explosions show when burger bomb detonate
+- Player dies when explosion hits player
+- Running animation added
+- Animation facing direction added
 
 
 ## Current Bugs
@@ -20,7 +28,7 @@ Remake of bomberman, because its my all time favourite retro game.
 #### Minor Bugs
 1. *player dies*: Player not dying when partially covered by wall and partially next to bomb. Need to add feature
 2. *bomb*: Bomb is still placed when standing between two boxes. bomb does not appear, but needs to timeout before being able to place another bomb.
-3. *border*: Border is currently set to test game proper function. When adjusting width and height, need to ensure these borders are still impenetrable
+3. *border*: Border is currently set to test game proper function. When adjusting width and height, need to ensure these borders are still impenetrable.
 
 ## Fixed Bugs
 
@@ -28,6 +36,7 @@ Remake of bomberman, because its my all time favourite retro game.
    bombs seem to have stopped glitching.
 2. *burger*: Would only not blow up brick bellow bomb, if there was a brick above the bomb.
 3. *player dies*: Player now dies when on bomb, next to bomb or partially next to bomb. Still minor bug when partially covered to be fixed
+4. *fire explosions*: not disappearing correctly. Fixed
 
 
 ## TODO
