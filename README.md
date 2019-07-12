@@ -35,7 +35,7 @@ Remake of bomberman, because its my all time favourite retro game.
 
 ## Current Bugs
 
-1. *burger*: Burger bomb glitches when too many are placed at the same time. Glitch appers again with extra burgers.
+1. ~~*burger*: Burger bomb glitches when too many are placed at the same time. Glitch appers again with extra burgers.~~ *FIXED*
 2. ~~*player dies*: Player not dying only when directly next to bomb.~~ *FIXED*
 
 #### Minor Bugs
@@ -50,6 +50,7 @@ Remake of bomberman, because its my all time favourite retro game.
 2. *burger*: Would only not blow up brick bellow bomb, if there was a brick above the bomb.
 3. *player dies*: Player now dies when on bomb, next to bomb or partially next to bomb. Still minor bug when partially covered to be fixed
 4. *fire explosions*: not disappearing correctly. Fixed
+5. *multiple burger*: multiple burger bomb glitch has been fixed.
 
 
 ## TODO
