@@ -252,11 +252,12 @@ $(document).ready(function() {
               let burgerX = $burgerPosition.left;
               let burgerY = $burgerPosition.top;
 
-
-
               // console.log('BOOOM!, ', i);
               // console.log($('.box').eq(i));
+
               $('.box').eq(i).removeClass('burger');
+
+
               for (let i = 0; i < $('.box').length; i++) {
 
                 const fire = function() {

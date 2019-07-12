@@ -4,6 +4,17 @@ Remake of bomberman, because its my all time favourite retro game.
 
 ## Version 2.9
 
+## Table of Contents
+1. Link
+2. Features
+  3. New Features
+4. Current Bugs
+  5. Fixed Bugs
+6. TODO List
+7. Technologies
+8. Thank You
+
+
 ## Link - Deployed on GitHub Pages
 [Bomberman Game](https://victorzw895.github.io/project0-bomberman/)
 
