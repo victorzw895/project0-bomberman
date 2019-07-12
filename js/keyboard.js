@@ -2,7 +2,8 @@ console.log('bomberman is running!');
 
 // if burger placed, stop from dropping multiple burgers
 // Future variable change to counter, if power up allow multiple bombs ////////
-let burgerPlaced = false ;
+let burgerAmmo = 1 ;
+let burgerPlaced = 0;
 
 // bomberman possible movements ///////////////////////////////////////////////
 let canMove = {
@@ -230,8 +231,8 @@ $(document).ready(function() {
       // need to setTimeout to explode bomb
 
       // for any space the character can move (not impenetrable)
-      if (!burgerPlaced) {
-        burgerPlaced = true;
+      if (burgerPlaced !== burgerAmmo) {
+        burgerPlaced += 1;
         for (let i = 0; i < $box.length; i++) {
 
           let $boxPosition = $box.eq(i).position()
@@ -246,7 +247,7 @@ $(document).ready(function() {
             // save function for when bomb explodes, require burgerPosition as argument for detonateBreaks to know surrounding bricks to break
             const explode = function() {
 
-              clearTimeout(timeoutId);
+              // clearTimeout(timeoutId);
 
               let burgerX = $burgerPosition.left;
               let burgerY = $burgerPosition.top;
@@ -298,7 +299,7 @@ $(document).ready(function() {
                   timeoutId = setTimeout(fire,500);
                 }
               }
-              burgerPlaced = false;
+              burgerPlaced -= 1;
 
               // console.log($burgerPosition);
 
@@ -365,6 +366,7 @@ $(document).ready(function() {
           $('.powerup').eq(i).position().top === $('.bomberman').position().top) {
         console.log('GRABBING POWERUP!');
         $('.powerup').eq(i).removeClass('powerup');
+        burgerAmmo += 1;
       }
     }
     // }

@@ -18,11 +18,13 @@ Remake of bomberman, because its my all time favourite retro game.
 - Player dies when explosion hits player
 - Running animation added
 - Animation facing direction added
+- Added powerup boxes
+- Added burger count, now increases burger ammo when grabbing powerup boxes
 
 
 ## Current Bugs
 
-1. *burger*: Burger bomb glitches when too many are placed at the same time.
+1. *burger*: Burger bomb glitches when too many are placed at the same time. Glitch appers again with extra burgers.
 2. ~~*player dies*: Player not dying only when directly next to bomb.~~ *FIXED*
 
 #### Minor Bugs
