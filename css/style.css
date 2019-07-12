@@ -6,19 +6,38 @@ body {
   background-color: rgba(31, 40, 161, 0.44);
 }
 
+/* For multiplayer future feature */
 #player {
 
 }
 
+/* bomberman player */
 .bomberman {
   position: absolute;
-  background-image: url(../images/spritestand.gif);
+  /* background-image: url(../images/spritestand.gif); */
   background-size: contain;
   /* left: 219px; */
   /* top: 100px; */
   width: 50px;
   height: 50px;
 }
+
+.idle {
+  position: absolute;
+  background-image: url(../images/spritestand.gif);
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+}
+
+.walking {
+  position: absolute;
+  background-image: url(../images/spritewalk.gif);
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+}
+
 
 .dead {
   background-image: url(../images/rest.gif);
@@ -27,6 +46,8 @@ body {
   height: 50px;
 }
 
+
+/* Game features */
 .burger {
   /* position: absolute; */
   background-image: url(../images/burger.gif);
@@ -41,13 +62,30 @@ body {
   /* padding: 10px; */
 }
 
+.fire {
+  background-image: url(../images/explosion.gif);
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+}
+
+.powerup {
+  background-image: url(../images/powerup.gif);
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+}
+
+
+
+/* Version 1 -- mostly testing impenetrable objects location purposes */
 .top {
   position: absolute;
   /* left: 219px; */
   /* top: 48px; */
   width: 50px;
   height: 50px;
-  background-color: rgba(255, 0, 0, 0.4);
+  /* background-color: rgba(255, 0, 0, 0.4); */
   z-index: 1;
 }
 
@@ -57,7 +95,7 @@ body {
   /* top: 100px; */
   width: 50px;
   height: 50px;
-  background-color: rgba(255, 0, 0, 0.4);
+  /* background-color: rgba(255, 0, 0, 0.4); */
   z-index: 1;
 }
 
@@ -67,7 +105,7 @@ body {
   /* top: 152px; */
   width: 50px;
   height: 50px;
-  background-color: rgba(255, 0, 0, 0.4);
+  /* background-color: rgba(255, 0, 0, 0.4); */
   z-index: 1;
 }
 
@@ -77,29 +115,11 @@ body {
   /* top: 100px; */
   width: 50px;
   height: 50px;
-  background-color: rgba(255, 0, 0, 0.4);
+  /* background-color: rgba(255, 0, 0, 0.4); */
   z-index: 1;
 }
 
-/* FOR full version, still on testing
-
-#bomberman {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  background-image: url(../images/spritestand.gif);
-  background-size: contain;
-  left: 220px;
-  top: 101px;
-}
-
-.moving {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-image: url(../images/spritewalk.gif);
-  background-size: contain;
-} */
+/* making board, borders, walls and bricks */
 
 .box {
   background-color: rgba(114, 144, 96, 0.73);

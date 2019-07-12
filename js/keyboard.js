@@ -12,11 +12,11 @@ let canMove = {
   left: true
 };
 
-// look at position and check if impenetrable objects around character
+// Function look at position and check if impenetrable objects around character
 const checkImpenetrable = function() {
   let $impenetrable = $('.impenetrable');
 
-  // get position left/top of boxes surrounding character // can remove if working similar to bomb
+  // get position left/top px of boxes surrounding character // can remove if working similar to bomb
   let topX = $('.top').position().left;
   let topY = $('.top').position().top;
   let rightX = $('.right').position().left;
@@ -116,16 +116,15 @@ $(document).ready(function() {
 
   $(document).on("keydown",(function(e) {
 
+    if (pressedKeys[e.which] === true) {
+      $('.bomberman').addClass('walking');
+      $('.bomberman').removeClass('idle');
+    }
+
     // save to variable function to detonateBreaks when bomb detonates next to bricks
     const detonateBreaks = function( $burgerPosition ) {
       let bX = $('.bomberman').position().left;
       let bY = $('.bomberman').position().top;
-
-      // else if ((bX + 52 === $burgerPosition.left && bY - 26 === $burgerPosition.top) ||
-      //          ((bX === $burgerPosition.left - 26) && bY === $burgerPosition.top)) {
-      //   // console.log('still cant go up!');
-      //   canMove.up = false;
-      // }
 
       // If player is on bomb, or next to bomb, die
       if ( bX === $burgerPosition.left && bY === $burgerPosition.top ) { // have to use left and top
@@ -247,9 +246,56 @@ $(document).ready(function() {
 
               clearTimeout(timeoutId);
 
+              let burgerX = $burgerPosition.left;
+              let burgerY = $burgerPosition.top;
+
+
+
               // console.log('BOOOM!, ', i);
               // console.log($('.box').eq(i));
               $('.box').eq(i).removeClass('burger');
+              for (let i = 0; i < $('.box').length; i++) {
+
+                const fire = function() {
+                  $box.eq(i).removeClass('fire');
+                }
+
+                console.log('running for loop')
+                let bX = $('.box').eq(i).position().left;
+                let bY = $('.box').eq(i).position().top;
+                console.log(bX, burgerX);
+                console.log(bY, burgerY);
+                // if burger on box
+                if (bX === burgerX && bY === burgerY) {
+                  console.log('explosions! A LOT OF EXPLOSIONS');
+                  $box.eq(i).addClass('fire');
+                  timeoutId = setTimeout(fire,500);
+                }
+                // if box is left of burger
+                else if (bX === burgerX - 52 && bY === burgerY) {
+                  console.log('explosions! A LOT OF EXPLOSIONS');
+                  $box.eq(i).addClass('fire');
+                  timeoutId = setTimeout(fire,500);
+                }
+                // if box is right of burger
+                else if (bX === burgerX + 52 && bY === burgerY) {
+                  console.log('explosions! A LOT OF EXPLOSIONS');
+                  $box.eq(i).addClass('fire');
+                  timeoutId = setTimeout(fire,500);
+                }
+                // if box is above burger
+                else if (bX === burgerX && bY === burgerY - 52) {
+                  console.log('explosions! A LOT OF EXPLOSIONS');
+                  $box.eq(i).addClass('fire');
+                  timeoutId = setTimeout(fire,500);
+                }
+                // if box is below burger
+                else if (bX === burgerX && bY === burgerY + 52) {
+                  console.log('explosions! A LOT OF EXPLOSIONS');
+                  $box.eq(i).addClass('fire');
+                  timeoutId = setTimeout(fire,500);
+                }
+              }
               burgerPlaced = false;
 
               // console.log($burgerPosition);
@@ -279,6 +325,13 @@ $(document).ready(function() {
         // console.log(bX);
         // console.log(bY);
         $('.bomberman').css(action[e.which])
+        if (e.which === 37) {
+          $('.bomberman').css({'transform': 'scaleX(-1)'})
+        }
+        if (e.which === 39) {
+          $('.bomberman').css('transform', 'scaleX(1)')
+        }
+
         $('.top').css(action[e.which])
         $('.right').css(action[e.which])
         $('.bottom').css(action[e.which])
@@ -297,6 +350,8 @@ $(document).ready(function() {
 
   $(document).on("keyup",(function(e) {
 
+    $('.bomberman').addClass('idle');
+    $('.bomberman').removeClass('walking');
     // if (e.which === 37 || e.which === 38 || e.which === 39 || e.which === 40 ) {
       // clearInterval(intervalId)
       moving = false;

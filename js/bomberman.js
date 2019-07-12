@@ -39,12 +39,8 @@ $(document).ready(function () {
       left: { top: leftX, left: leftY }
     }
 
-    $('#player').append("<div class=bomberman></div>")
+    $('#player').append("<div class='bomberman idle'></div>")
     //
-    console.log($('.bomberman'))
-    console.log($('.bomberman').position())
-    console.log($(".box").eq(0))
-    console.log($(".box").eq(0).position())
     $('.bomberman').css($firstbox);
     $('.top').css(position.top);
     $('.right').css(position.right);
@@ -93,7 +89,12 @@ $(document).ready(function () {
           }
           // boolean, if number over 0.3/1, make brick (random generate bricks)
           else if (Math.random() >= 0.3) {
-            $('.wrapper').append("<div class='brick impenetrable'></div>");
+            if (Math.random() >= 0.5) {
+              $('.wrapper').append("<div class='brick powerup impenetrable'></div>")
+            }
+            else {
+              $('.wrapper').append("<div class='brick impenetrable'></div>");
+            }
           }
           // the ones that did not become bricks, make regular box
           else {
@@ -120,7 +121,12 @@ $(document).ready(function () {
           }
           // boolean, if number over 0.3/1, make brick (random generate bricks)
           else if (Math.random() >= 0.3) {
-            $('.wrapper').append("<div class='brick impenetrable'></div>");
+            if (Math.random() >= 0.5) {
+              $('.wrapper').append("<div class='brick powerup impenetrable'></div>")
+            }
+            else {
+              $('.wrapper').append("<div class='brick impenetrable'></div>");
+            }
           }
           // the ones that did not become bricks, make regular box
           else {
