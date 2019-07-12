@@ -81,6 +81,18 @@ const checkImpenetrable = function() {
   }
 }
 
+//power up Function ///////////////////////////////////////////////////////
+const grabPowerup = function() {
+  for (let i = 0; i < $('.powerup').length; i ++) {
+    if ($('.powerup').eq(i).position().left === $('.bomberman').position().left &&
+        $('.powerup').eq(i).position().top === $('.bomberman').position().top) {
+      console.log('GRABBING POWERUP!');
+      $('.powerup').eq(i).removeClass('powerup');
+      burgerAmmo += 1;
+    }
+  }
+}
+
 
 $(document).ready(function() {
   // checkImpenetrable(); // initialize position and check for impenetrable objects
@@ -114,6 +126,10 @@ $(document).ready(function() {
 
 
   $(document).on("keydown",(function(e) {
+
+    checkImpenetrable();
+
+    grabPowerup();
 
 
     // change character from idle to walking animation
@@ -183,47 +199,55 @@ $(document).ready(function() {
 
 // Kill bricks ////////////////////////////////////////////////////////////////
     const killBricks = function( $burgerPosition ) {
-      for (let i = 0; i < $('.impenetrable').length; i++) {
-        $impenetrable = $('.impenetrable').eq(i)
-        $impPosition = $('.impenetrable').eq(i).position()
-        $hasBrick = $('.impenetrable').eq(i).hasClass('brick');
-        if ($hasBrick) {
-          // console.log($impenetrable);
-          // console.log($burgerPosition.left = 52, $impenetrable.position().left);
-          // if brick is right of burger
-          if ( $burgerPosition.left + 52 === $impPosition.left && $burgerPosition.top === $impPosition.top ) {
-            console.log('exploding right bricks!');
-            $impenetrable.addClass('box');
-            $impenetrable.removeClass('brick');
-            $impenetrable.removeClass('impenetrable');
-          }
+      for (let i = $('.brick').length - 1; i >= 0; i--) { // reverse to not skip elements, after removing and adding elements
+        $burgerLeft = $burgerPosition.left
+        $burgerTop = $burgerPosition.top
+        $brick = $('.brick').eq(i)
+        $brickLeft = $brick.position().left
+        $brickTop = $brick.position().top
+        // $hasBrick = $('.brick').eq(i).hasClass('brick');
+        // if ($hasBrick) {
+          // console.log($brick);
+          // console.log($burgerPosition.left = 52, $brick.position().left);
           // if brick is left of burger
-          if ( $burgerPosition.left - 52 === $impPosition.left && $burgerPosition.top === $impPosition.top ) {
-            console.log('exploding left bricks!');
-            $impenetrable.addClass('box');
-            $impenetrable.removeClass('brick');
-            $impenetrable.removeClass('impenetrable');
+          if ($brick) {
+            console.log(i, $brick, $burgerLeft - 52 === $brickLeft && $burgerTop === $brickTop)
+            console.log(i, $brick, $burgerLeft === $brickLeft && $burgerTop - 52 === $brickTop)
+            console.log(i, $brick, $burgerLeft === $brickLeft && $burgerTop + 52 === $brickTop)
+            console.log(i, $brick, $burgerLeft + 52 === $brickLeft && $burgerTop === $brickTop)
           }
 
+          if ( $burgerLeft - 52 === $brickLeft && $burgerTop === $brickTop ) {
+            console.log('exploding left bricks!');
+            $brick.addClass('box');
+            $brick.toggleClass('brick');
+            $brick.toggleClass('impenetrable');
+          }
           // THIS PART IS WEIRD IF I SWAP ABOVE WITH BELOW
           // if brick is above burger
-          if ( $burgerPosition.left === $impPosition.left && $burgerPosition.top - 52 === $impPosition.top ) {
+          else if ( $burgerLeft === $brickLeft && $burgerTop - 52 === $brickTop ) {
             console.log('exploding top bricks!');
-            $impenetrable.addClass('box');
-            $impenetrable.removeClass('brick');
-            $impenetrable.removeClass('impenetrable');
+            $brick.addClass('box');
+            $brick.toggleClass('brick');
+            $brick.toggleClass('impenetrable');
           }
           // if brick is below burger
-          if ( $burgerPosition.left === $impPosition.left && $burgerPosition.top + 52 === $impPosition.top ) {
+          else if ( $burgerLeft === $brickLeft && $burgerTop + 52 === $brickTop ) {
             console.log('exploding bottom bricks!');
-            $impenetrable.addClass('box');
-            $impenetrable.removeClass('brick');
-            $impenetrable.removeClass('impenetrable');
+            $brick.addClass('box');
+            $brick.toggleClass('brick');
+            $brick.toggleClass('impenetrable');
           }
-        }
+          // if brick is right of burger
+          else if ( $burgerLeft + 52 === $brickLeft && $burgerTop === $brickTop ) {
+            console.log('exploding right bricks!');
+            $brick.addClass('box');
+            $brick.toggleClass('brick');
+            $brick.toggleClass('impenetrable');
+          }
+        // }
       }
     }
-
 
 
 
@@ -358,12 +382,12 @@ $(document).ready(function() {
         $('.left').css(action[e.which])
 
 
-        moving = true; // move code runs only once, maybe remove this
+        // moving = true; // move code runs only once, maybe remove this
 
       }
 
       // if character is not yet moving, move once
-      if (!moving && pressedKeys[e.which] === true) {
+      if (/*!moving && */pressedKeys[e.which] === true) {
         move();
       }
     }
@@ -380,15 +404,8 @@ $(document).ready(function() {
 
     moving = false;
 
-    //power up Function ///////////////////////////////////////////////////////
-    for (let i = 0; i < $('.powerup').length; i ++) {
-      if ($('.powerup').eq(i).position().left === $('.bomberman').position().left &&
-          $('.powerup').eq(i).position().top === $('.bomberman').position().top) {
-        console.log('GRABBING POWERUP!');
-        $('.powerup').eq(i).removeClass('powerup');
-        burgerAmmo += 1;
-      }
-    }
+    grabPowerup();
+
     // }
 
     // Once stop moving, see where else can player move
