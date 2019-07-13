@@ -8,11 +8,12 @@ Remake of bomberman, because its my all time favourite retro game.
 1. Link
 2. Features
   3. New Features
-4. Current Bugs
-  5. Fixed Bugs
-6. TODO List
-7. Technologies
-8. Thank You
+4. Challenges
+5. Current Bugs
+  6. Fixed Bugs
+7. TODO List
+8. Technologies
+9. Thank You
 
 
 ## Link - Deployed on GitHub Pages
@@ -32,6 +33,11 @@ Remake of bomberman, because its my all time favourite retro game.
 - Added powerup boxes
 - Added burger count, now increases burger ammo when grabbing powerup boxes
 
+## Challenges
+1. Learning how to get JavaScript to recognise keypress for arrow keys. Needed to use keydown and keyup instead.
+2. Trying to get collision detection to work, not just between two objects, but main object and all the other hundreds of boxes in the game at the same time. quadtree might be a solution to look into for faster performance.
+3. Getting main object to detect all possible collisions and prevent from being able to pass through impenetrable objects
+4. Remove multiple objects/classes from elements running through a for loop. This causes weird things as the loop is running through a live object, as things get removed or added. Loop tends to skip elements or do other weird things.
 
 ## Current Bugs
 
